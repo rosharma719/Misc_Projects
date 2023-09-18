@@ -36,6 +36,8 @@ for x in range(0, numChoices):
     for y in range(0, numChoices): 
         sumList[x][y] = getProduct(x, y)
 
+strictPreferences = []
+fakePref = []
 
 print("DIRECT REVEALED PREFERENCES: ")
 for x in range(0, numChoices): 
@@ -43,6 +45,9 @@ for x in range(0, numChoices):
         if y != x: 
             if sumList[x][y] < sumList[y][y] and sumList[x][y] < budgetList[y]:
                 print("Choice", y + 1, "is directly revealed strictly preferred to Choice", x + 1)
+                arr = [x, y] 
+                strictPreferences.append(arr)
+
             if sumList[x][y] == sumList[y][y]: 
                 print("Choice", y + 1, "is directly revealed weakly preferred to Choice", x+1 )
 
@@ -55,3 +60,11 @@ for x in range(0, numChoices):
 # [8, 6.1, 9, 9.5, 3.5], 
 # [20.5, 1.4, 13.0, 3.5, 2.5], 
 # [6, 6.0, 3, 15.0, 3.0]]
+
+
+print("INDIRECT REVEALED PREFERENCES: ")
+for x in range(0, len(strictPreferences)): 
+    for y in range(0, len(strictPreferences)): 
+        if (strictPreferences[x][0] == strictPreferences[y][1]): 
+            print("Choice", strictPreferences[x][1]+1, "is indirectly revealed preferred to ", strictPreferences[y][0]+1)
+#I haven't yet done strict VS weak indirect revealed preference 
